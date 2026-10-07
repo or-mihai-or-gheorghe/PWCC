@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Random Forest în browser</title>
+</head>
+<body>
+  <h1>Random Forest în browser</h1>
+  <p>Algoritmul este scris în C++ și compilat în WebAssembly. Fișierul CSV ales nu părăsește calculatorul.</p>
+
+  <!-- Datele și parametrii pădurii -->
+  <p>
+    <label for="fisier">Fișierul CSV:</label>
+    <input type="file" id="fisier" accept=".csv">
+  </p>
+  <p>
+    <label for="arbori">Numărul de arbori:</label>
+    <input type="number" id="arbori" value="100" min="1" max="1000">
+  </p>
+  <p>
+    <label for="adancime">Adâncimea maximă a unui arbore:</label>
+    <input type="number" id="adancime" value="8" min="1" max="30">
+  </p>
+  <p>
+    <input type="checkbox" id="compara">
+    <label for="compara">Compară cu aceeași pădure scrisă în JavaScript</label>
+  </p>
+  <p>
+    <button id="antreneaza">Antrenează</button>
+  </p>
+
+  <!-- Aici scrie app.js rezultatele -->
+  <h2>Rezultate</h2>
+  <pre id="rezultate">Pagina nu a pornit încă. Dacă mesajul rămâne, deschide pagina printr-un server local (vezi README.md).</pre>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
