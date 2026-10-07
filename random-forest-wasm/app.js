@@ -18,7 +18,7 @@ try {
 } catch (eroare) {
   rezultate.textContent =
     'Modulul WebAssembly nu s-a putut încărca (' + eroare.message + ').\n' +
-    'Verifică două lucruri: ai compilat rf.cpp cu emcc și ai deschis pagina printr-un server local, ' +
+    'Verifică două lucruri: ai compilat rf.cpp cu em++ și ai deschis pagina printr-un server local, ' +
     'nu direct din fișier (vezi README.md).';
   buton.disabled = true;
 }

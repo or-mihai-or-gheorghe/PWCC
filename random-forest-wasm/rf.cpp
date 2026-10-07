@@ -7,7 +7,7 @@
 //   - clasa prezisă este cea votată de cei mai mulți arbori.
 //
 // Compilarea (comanda completă este în README.md):
-//   emcc rf.cpp -O3 -lembind -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createRandomForest -sALLOW_MEMORY_GROWTH=1 -o rf.js
+//   em++ rf.cpp -O3 -lembind -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createRandomForest -sALLOW_MEMORY_GROWTH=1 -o rf.js
 
 #include <emscripten/bind.h>
 #include <emscripten/val.h>

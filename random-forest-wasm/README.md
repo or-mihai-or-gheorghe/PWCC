@@ -33,8 +33,10 @@ Pe Windows, în Command Prompt, ultimele trei comenzi sunt `emsdk install latest
 În directorul `random-forest-wasm`:
 
 ```bash
-emcc rf.cpp -O3 -lembind -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createRandomForest -sALLOW_MEMORY_GROWTH=1 -o rf.js
+em++ rf.cpp -O3 -lembind -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createRandomForest -sALLOW_MEMORY_GROWTH=1 -o rf.js
 ```
+
+`em++` este varianta lui `emcc` pentru C++: la link adaugă și biblioteca standard C++. Cu `emcc`, versiunile recente de Emscripten se opresc la link, cu erori de tipul `undefined symbol: operator new(unsigned long)`.
 
 - `-O3`: optimizarea maximă a codului;
 - `-lembind`: biblioteca Embind, prin care clasa C++ `RandomForest` devine vizibilă în JavaScript;
