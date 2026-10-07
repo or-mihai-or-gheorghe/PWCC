@@ -1,4 +1,4 @@
-// app.js — leagă pagina de pădurea aleatoare compilată în WebAssembly (rf.js și rf.wasm).
+// app.js — leagă pagina de algoritmul Random Forest compilat în WebAssembly (rf.js și rf.wasm).
 
 import { RandomForestJS } from './rf-pur.js';
 
@@ -38,16 +38,16 @@ buton.addEventListener('click', async () => {
     const adancimeMaxima = Number(adancime.value);
 
     // 2. Antrenarea în WebAssembly. Obiectele create din C++ se eliberează explicit, cu delete().
-    const padure = new wasm.RandomForest(nrArbori, adancimeMaxima, 2, 42);
-    const rezultatWasm = ruleaza(padure, set);
-    const noduri = padure.nodeCount();
-    padure.delete();
+    const model = new wasm.RandomForest(nrArbori, adancimeMaxima, 2, 42);
+    const rezultatWasm = ruleaza(model, set);
+    const noduri = model.nodeCount();
+    model.delete();
 
     let text = descriereDate(fisier.files[0].name, date, set) + '\n';
     text += `WebAssembly (C++): ${nrArbori} arbori, ${formatNumar(noduri)} noduri, antrenare în ${formatTimp(rezultatWasm.timp)}\n`;
     text += descriereRezultat(rezultatWasm, date, set);
 
-    // 3. Opțional: aceeași pădure în JavaScript pur, pentru comparație.
+    // 3. Opțional: același algoritm în JavaScript pur, pentru comparație.
     if (compara.checked) {
       const rezultatJs = ruleaza(new RandomForestJS(nrArbori, adancimeMaxima, 2, 42), set);
       const aceleasi = rezultatJs.predictii.every((v, i) => v === rezultatWasm.predictii[i]);
@@ -108,14 +108,14 @@ function imparteDate(date) {
   };
 }
 
-function ruleaza(padure, set) {
+function ruleaza(model, set) {
   const inceput = performance.now();
-  padure.fit(set.xAntrenare, set.yAntrenare, set.nrColoane);
+  model.fit(set.xAntrenare, set.yAntrenare, set.nrColoane);
   const timp = performance.now() - inceput;
   return {
     timp,
-    predictii: padure.predict(set.xTest),
-    importanta: Array.from(padure.featureImportances()),
+    predictii: model.predict(set.xTest),
+    importanta: Array.from(model.featureImportances()),
   };
 }
 

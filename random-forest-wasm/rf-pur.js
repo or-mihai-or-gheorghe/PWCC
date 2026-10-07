@@ -1,4 +1,4 @@
-// rf-pur.js — aceeași pădure aleatoare ca în rf.cpp, scrisă direct în JavaScript.
+// rf-pur.js — același Random Forest ca în rf.cpp, scris direct în JavaScript.
 // Folosește același generator de numere aleatoare și aceiași pași, deci construiește exact
 // aceiași arbori. Diferența de timp față de varianta WebAssembly vine doar din limbaj.
 

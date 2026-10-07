@@ -4,7 +4,7 @@
 //   - fiecare arbore învață dintr-un eșantion bootstrap (rânduri alese aleator, cu revenire);
 //   - la fiecare nod se încearcă doar câteva coloane, alese aleator (aproximativ √d din d);
 //   - nodul se împarte după pragul care micșorează cel mai mult impuritatea Gini;
-//   - pădurea clasifică prin votul majorității arborilor.
+//   - clasa prezisă este cea votată de cei mai mulți arbori.
 //
 // Compilarea (comanda completă este în README.md):
 //   emcc rf.cpp -O3 -lembind -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createRandomForest -sALLOW_MEMORY_GROWTH=1 -o rf.js

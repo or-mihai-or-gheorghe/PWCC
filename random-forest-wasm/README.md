@@ -1,13 +1,13 @@
 # Random Forest în browser, cu WebAssembly
 
-Un Random Forest pentru clasificare, scris în C++ (`rf.cpp`) și compilat în WebAssembly cu Emscripten. Pagina `index.html` încarcă un fișier CSV ales de utilizator, antrenează pădurea direct în browser și afișează acuratețea pe un set de test. Datele nu părăsesc calculatorul.
+Un Random Forest pentru clasificare, scris în C++ (`rf.cpp`) și compilat în WebAssembly cu Emscripten. Pagina `index.html` încarcă un fișier CSV ales de utilizator, antrenează modelul direct în browser și afișează acuratețea pe un set de test. Datele nu părăsesc calculatorul.
 
 | Fișier | Rol |
 | --- | --- |
 | `rf.cpp` | algoritmul Random Forest, în C++ |
 | `index.html` | pagina |
 | `app.js` | citește fișierul CSV, apelează modulul WebAssembly și afișează rezultatele |
-| `rf-pur.js` | aceeași pădure, scrisă direct în JavaScript, pentru comparație |
+| `rf-pur.js` | același algoritm, scris direct în JavaScript, pentru comparație |
 | `date/examen.csv`, `date/fructe.csv` | două seturi de date de test |
 
 Fișierele `rf.js` și `rf.wasm` nu se află în repository: le generează compilarea.
@@ -76,6 +76,6 @@ Datele sunt generate și au zgomot: câteva etichete sunt greșite intenționat,
 ## Ce se poate observa
 
 - Cu 100 de arbori și adâncimea 8, acuratețea pe setul de test este de aproximativ 82% pentru `examen.csv` și 92% pentru `fructe.csv`.
-- Importanța coloanelor arată pe ce se bazează pădurea. La `examen.csv`, `ziua_nasterii` iese ultima, pentru că nu are legătură cu rezultatul.
-- Opțiunea „Compară cu aceeași pădure scrisă în JavaScript” antrenează și varianta din `rf-pur.js`. Cele două variante dau exact aceleași predicții, dar varianta JavaScript durează de câteva ori mai mult (de 3–5 ori, în Chromium).
+- Importanța coloanelor arată pe ce se bazează modelul. La `examen.csv`, `ziua_nasterii` iese ultima, pentru că nu are legătură cu rezultatul.
+- Opțiunea „Compară cu același algoritm scris în JavaScript” antrenează și varianta din `rf-pur.js`. Cele două variante dau exact aceleași predicții, dar varianta JavaScript durează de câteva ori mai mult (de 3–5 ori, în Chromium).
 - Obiectul `RandomForest` creat din C++ se eliberează explicit, cu `delete()` (vezi `app.js`): memoria modulului WebAssembly nu este gestionată automat de JavaScript.
