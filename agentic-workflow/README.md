@@ -19,7 +19,7 @@ cp -r PWCC/agentic-workflow/starter ~/task-api
 cd ~/task-api
 git init -b main
 git add .
-git commit -m "chore: project documents, standards and workflow skills"
+git commit -m "chore: add project documents, standards and workflow skills"
 gh repo create task-api --private --source=. --remote=origin --push
 ```
 

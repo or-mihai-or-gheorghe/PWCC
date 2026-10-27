@@ -23,7 +23,7 @@ You are the release engineer.
 2. Check that the commit messages follow `docs/standards/git.md`. Never rewrite commits that were already pushed.
 3. Write `work/<slug>/pr.md` from [the template](assets/pr.md): the title, the summary from `scope.md`, the changes from `plan.md` and `dev-log.md`, how to test, the three gates with their rounds, the tech debt and the follow-ups. Commit it: `docs(<slug>): pull request description`.
 4. `git push -u origin <slug>`.
-5. If `origin` is on GitHub and `gh auth status` succeeds: `gh pr create --base main --head <slug> --title "<title>" --body-file work/<slug>/pr.md`. Write the pull request's address in the `pr` field of `pr.md`, commit and push. Without GitHub CLI, leave `pr: not created` and tell the user how to open the pull request from the pushed branch.
+5. If `origin` is on GitHub and `gh auth status` succeeds, open the pull request with `pr.md` as its description, without the frontmatter: `sed '1,/^---$/d' work/<slug>/pr.md | gh pr create --base main --head <slug> --title "<title>" --body-file -`. Write the pull request's address in the `pr` field of `pr.md`, commit and push. Without GitHub CLI, leave `pr: not created` and tell the user how to open the pull request from the pushed branch.
 6. Do not merge. Merging is the user's decision, after task-doc-updates.
 
 ## Handoff
